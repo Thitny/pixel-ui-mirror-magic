@@ -1,3 +1,4 @@
+
 {
   "questions": [
     {
@@ -8,14 +9,15 @@
     },
     {
       "id": "q2",
-      "question_text": "What type of pool business are you running?",
+      "question_text": "What type of business are you running?",
       "type": "multiple_choice",
       "options": [
-        "🏊 Building pools",
-        "💧 Pool cleaning",
-        "🔧 Pool repair",
-        "🛠️ Pool maintenance",
-        "🌊 Water quality management",
+        "🍽️ Restaurant",
+        "☕ Café / Restaurant",
+        "💇 Hair cut",
+        "🐕 Pet grooming / care",
+        "🏊 Pool service",
+        "🔧 Vehicle maintenance",
         "📝 Other"
       ],
       "variable": "#category"

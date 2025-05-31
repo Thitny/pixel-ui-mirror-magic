@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -48,7 +49,7 @@ export const MultipleChoice: React.FC<MultipleChoiceProps> = ({ options, value, 
 
   // Function to extract emoji from the start of an option if present
   const extractEmoji = (option: string) => {
-    const emojiRegex = /^([\u{1F300}-\u{1F6FF}\u{2600}-\u{26FF}\u{1F1E0}-\u{1F1FF}✅❓❗🔴🟠🟡🟢🔵🟣🟤⚫⚪🟥🟧🟨🟩🟦🟪🟫⬛⬜💹💲💰💸🏊💧🔧🛠️🌊📝]+ )/u;
+    const emojiRegex = /^([\u{1F300}-\u{1F6FF}\u{2600}-\u{26FF}\u{1F1E0}-\u{1F1FF}✅❓❗🔴🟠🟡🟢🔵🟣🟤⚫⚪🟥🟧🟨🟩🟦🟪🟫⬛⬜💹💲💰💸🏊💧🔧🛠️🌊📝🍽️☕💇🐕]+ )/u;
     const match = option.match(emojiRegex);
     
     if (match) {
@@ -119,13 +120,14 @@ export const MultipleChoice: React.FC<MultipleChoiceProps> = ({ options, value, 
   const getIconForOption = (text: string) => {
     const lowerText = text.toLowerCase();
 
-    // Special handling for question about pool business types (q2)
+    // Special handling for question about business types (q2)
     if (questionId === 'q2') {
-      if (lowerText.includes('building pools')) return <Building className="mr-3 text-[#1a73e8]" size={24} />;
-      if (lowerText.includes('pool cleaning')) return <Droplet className="mr-3 text-[#22c55e]" size={24} />;
-      if (lowerText.includes('pool repair')) return <Wrench className="mr-3 text-[#ef4444]" size={24} />;
-      if (lowerText.includes('pool maintenance')) return <Hammer className="mr-3 text-[#9333ea]" size={24} />;
-      if (lowerText.includes('water quality')) return <Droplet className="mr-3 text-[#0ea5e9]" size={24} />;
+      if (lowerText.includes('restaurant')) return <Building className="mr-3 text-[#1a73e8]" size={24} />;
+      if (lowerText.includes('café') || lowerText.includes('cafe')) return <Building className="mr-3 text-[#8B4513]" size={24} />;
+      if (lowerText.includes('hair cut')) return <Building className="mr-3 text-[#ff6b9d]" size={24} />;
+      if (lowerText.includes('pet grooming')) return <Building className="mr-3 text-[#ff9500]" size={24} />;
+      if (lowerText.includes('pool service')) return <Droplet className="mr-3 text-[#22c55e]" size={24} />;
+      if (lowerText.includes('vehicle maintenance')) return <Wrench className="mr-3 text-[#ef4444]" size={24} />;
     }
 
     // Special handling for question q8 about social media obstacles
@@ -141,8 +143,7 @@ export const MultipleChoice: React.FC<MultipleChoiceProps> = ({ options, value, 
       }
     }
 
-    // Pool service specific
-    if (lowerText.includes('pool')) return <Droplet className="mr-3 text-[#1a73e8]" size={24} />;
+    // General business types
     if (lowerText.includes('cost') || lowerText.includes('price') || lowerText.includes('budget')) return <Wallet className="mr-3 text-[#1a73e8]" size={24} />;
     if (lowerText.includes('client') || lowerText.includes('customer')) return <Users className="mr-3 text-[#1a73e8]" size={24} />;
     if (lowerText.includes('review') || lowerText.includes('rating')) return <ThumbsUp className="mr-3 text-[#1a73e8]" size={24} />;
@@ -169,8 +170,8 @@ export const MultipleChoice: React.FC<MultipleChoiceProps> = ({ options, value, 
   // Check if this is the data collection question (q25)
   const isDataCollectionQuestion = questionId === 'q25';
 
-  // Check if this is the pool business type question (q2)
-  const isPoolBusinessTypeQuestion = questionId === 'q2';
+  // Check if this is the business type question (q2)
+  const isBusinessTypeQuestion = questionId === 'q2';
 
   return (
     <div className="space-y-3">
@@ -204,13 +205,13 @@ export const MultipleChoice: React.FC<MultipleChoiceProps> = ({ options, value, 
 
       {isObstacleQuestion && (
         <div className="mt-4 bg-[#e3f0ff] border border-[#a8d1ff] p-3 rounded-md text-sm text-[#1a4b8a]">
-          <p className="font-medium">Interesting fact: 90% of pool service businesses in Florida face similar challenges</p>
+          <p className="font-medium">Interesting fact: 90% of small businesses in Florida face similar challenges</p>
         </div>
       )}
 
-      {isPoolBusinessTypeQuestion && (
+      {isBusinessTypeQuestion && (
         <div className="mt-4 bg-[#e3f0ff] border border-[#a8d1ff] p-3 rounded-md text-sm text-[#1a4b8a]">
-          <p className="font-medium">Florida pool businesses that offer multiple services typically see 35% higher annual revenue</p>
+          <p className="font-medium">Florida businesses that diversify their services typically see 35% higher annual revenue</p>
         </div>
       )}
 
@@ -221,11 +222,11 @@ export const MultipleChoice: React.FC<MultipleChoiceProps> = ({ options, value, 
               <TooltipTrigger asChild>
                 <div className="inline-flex items-center bg-[#e3f0ff] border border-[#a8d1ff] px-3 py-1.5 rounded-md text-[#1a4b8a] cursor-help">
                   <LightbulbIcon size={16} className="mr-2 text-[#1a73e8]" />
-                  <span className="text-sm">Pool service tip</span>
+                  <span className="text-sm">Business tip</span>
                 </div>
               </TooltipTrigger>
               <TooltipContent className="bg-white border border-[#c7dcf7] p-3 max-w-xs shadow-lg">
-                <p className="text-sm text-[#1a4b8a]">In the Florida pool service industry, proper data collection helps provide better service during high-demand summer months</p>
+                <p className="text-sm text-[#1a4b8a]">Proper data collection helps provide better service and build stronger customer relationships</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
